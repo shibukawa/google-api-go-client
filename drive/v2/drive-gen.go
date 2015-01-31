@@ -14,8 +14,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/shibukawa/google-api-go-client/googleapi"
 	"golang.org/x/net/context"
-	"google.golang.org/api/googleapi"
 	"io"
 	"net/http"
 	"net/url"
@@ -3804,7 +3804,7 @@ func (c *FilesInsertCall) Do() (*File, error) {
 	urls += "?" + params.Encode()
 	if c.protocol_ != "resumable" {
 		var cancel func()
-		cancel, _ = googleapi.ConditionallyIncludeMediaWithMime(c.media_, c.file.MimeType &body, &ctype)
+		cancel, _ = googleapi.ConditionallyIncludeMediaWithMime(c.media_, c.file.MimeType, &body, &ctype)
 		if cancel != nil {
 			defer cancel()
 		}
